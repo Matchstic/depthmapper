@@ -40,7 +40,7 @@ StereoBM is the default if this option is omitted.
 
 AANet is an optionally supported algorithm, and as such you don't need PyTorch installed if you don't plan to use it.
 
-If you do want it, you'll want to download the pre-trained model for it. See the [AANet README](https://github.com/haofeixu/aanet) for more information.
+If you do want it, you'll want to download the pre-trained model for it. This can be downloaded from [here](https://github.com/haofeixu/aanet/blob/master/MODEL_ZOO.md), then placed into `./models`.
 
 ### Output 
 
@@ -48,7 +48,7 @@ For now, output is the generated disparity map and is shown in a new window. By 
 
 ### Configuration
 
-All configuration is to be done via a config file, aptly named `config.yml`. I've made sure to write comments in the default configuration file to give an understanding of what each parameter does.
+All configuration is to be done via a config file, named `settings.conf`. I've made sure to write comments in the default configuration file to give an understanding of what each parameter does.
 
 This file needs to live next to `main.py`, and will be automatically loaded.
 
