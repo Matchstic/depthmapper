@@ -12,7 +12,14 @@ Python 3.6 or higher is needed.
 
 First, update submodules: `git submodule update --init --recursive`
 
-You'll want to install requirements: `pip install -r requirements.txt` (note: PyTorch is optional)
+You'll want to install requirements: 
+
+```bash
+conda env create -f environment.yml
+conda activate depthmapper
+```
+
+(note: PyTorch is optional)
 
 Assuming you have a stereo camera board attached and available on `/dev/video0` and `/dev/video1`, you should be able to just run:
 
