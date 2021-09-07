@@ -3,14 +3,16 @@ from lib.camera import Camera
 
 def gstreamer_pipeline(
     id,
-    display_width=640,
-    display_height=360,
+    config,
     capture_width=1640,
     capture_height=1232,
-    framerate=20,
     sensor_mode=3,
     flip_method=0,
 ):
+    framerate = config['general']['framerate']
+    display_width = config['general']['width']
+    display_height = config['general']['height']
+
     return (
         "nvarguscamerasrc sensor-id=%d sensor-mode=%d ! "
         "video/x-raw(memory:NVMM), "
@@ -35,8 +37,8 @@ def gstreamer_pipeline(
 def open_capture(id, width, height):
     stream = gstreamer_pipeline(id, width, height)
     capture = Camera(stream, id)
-    
+
     if not capture.isOpened():
         raise Exception('Could not open video device ' + str(id))
-        
+
     return capture

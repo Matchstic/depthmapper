@@ -2,8 +2,6 @@ import os
 import sys
 import cv2
 import numpy as np
-import math
-import time
 
 ROOT_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)) + '/../../deps', "aanet")
 sys.path.append(ROOT_DIR)
@@ -37,13 +35,12 @@ no_intermediate_supervision = True  # Whether to add intermediate supervision
 deformable_groups = 2  # Number of deformable groups
 mdconv_dilation = 2  # Dilation rate for deformable conv
 refinement_type = "stereodrnet"  # Type of refinement module
-model_path = ""  # Pretrained network
 
 IMAGENET_MEAN = [0.485, 0.456, 0.406]
 IMAGENET_STD = [0.229, 0.224, 0.225]
 
 class AANetMatcher:
-    def __init__(self, width, height, model_path = ''):
+    def __init__(self, config):
         if AVAILABLE == False:
             return
 
@@ -63,6 +60,8 @@ class AANetMatcher:
                 ),
             ]
         )
+
+        model_path = config['aanet']['model']
 
         self.model = nets.AANet(
             max_disp,

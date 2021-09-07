@@ -1,51 +1,26 @@
 import cv2
-import numpy as np
-
-'''
-# / 1
-SWS = 21
-MDS = 0
-NOD = 128
-TTH = 10
-UR = 1
-SR = 15 # 14
-SPWS = 1000 # 150'''
-
-'''
-# / 1.5
-SWS = 21
-MDS = 0
-NOD = 96
-TTH = 0
-UR = 0
-SR = 0
-SPWS = 0'''
-
-# / 2
-SWS = 21
-MDS = 0
-NOD = 48
-TTH = 0
-UR = 1
-SR = 2
-SPWS = 2
 
 class StereoBMMatcher:
-    def __init__(self, width, height):
-        self.width = width
-        self.height = height
+    def __init__(self, config):
+        self.width = config['general']['width']
+        self.height = config['general']['height']
 
-        self.resize = (int(self.width / 2), int(self.height / 2))
+        downsample = config['general']['downsample_factor']
+
+        self.resize = (int(self.width / downsample), int(self.height / downsample))
 
         # Apply configuration settings
-        self.sbm = cv2.StereoBM_create(numDisparities=NOD, blockSize=SWS)
+        self.sbm = cv2.StereoBM_create(
+            numDisparities=config['stereobm']['num_disparities'],
+            blockSize=config['stereobm']['block_size']
+        )
         self.sbm.setPreFilterType(1)
-        self.sbm.setMinDisparity(MDS)
-        self.sbm.setNumDisparities(NOD)
-        self.sbm.setTextureThreshold(TTH)
-        self.sbm.setUniquenessRatio(UR)
-        self.sbm.setSpeckleRange(SR)
-        self.sbm.setSpeckleWindowSize(SPWS)
+        self.sbm.setMinDisparity(config['stereobm']['min_disparity'])
+        self.sbm.setNumDisparities(config['stereobm']['num_disparities'])
+        self.sbm.setTextureThreshold(config['stereobm']['texture_threshold'])
+        self.sbm.setUniquenessRatio(config['stereobm']['uniqueness_ratio'])
+        self.sbm.setSpeckleRange(config['stereobm']['speckle_range'])
+        self.sbm.setSpeckleWindowSize(config['stereobm']['speckle_window'])
 
     def process_pair(self, rectified_pair):
         left = cv2.resize(rectified_pair[0], self.resize)
