@@ -52,7 +52,7 @@ StereoBM is the default if this option is omitted.
 
 AANet is an optionally supported algorithm, and as such you don't need PyTorch installed if you don't plan to use it.
 
-If you do want it, you'll want to download the pre-trained model for it. This can be downloaded from [here](https://github.com/haofeixu/aanet/blob/master/MODEL_ZOO.md), then placed into `./models`.
+If you do want it, you'll want to download a pre-trained model for it. These can be downloaded from [here](https://github.com/haofeixu/aanet/blob/master/MODEL_ZOO.md), then placed into `./models`. Make sure to update `settings.conf` to the name of the model you wish to use.
 
 ### Output 
 
