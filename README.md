@@ -8,6 +8,11 @@ Hardware-wise, this utility has been used with the WaveShare IMX219-83 stereo ca
 
 Python 3.6 or higher is needed.
 
+**See this YouTube video for a brief(-ish) overview:** 
+
+[![Stereo depth mapping with OpenCV and Jetson Nano | DIY drone pt. 2](https://github.com/Matchstic/depthmapper/raw/main/.assets/yt.png)](https://youtu.be/_fH4SPhKpPM)
+
+
 ### Running the utility
 
 First, update submodules: `git submodule update --init --recursive`
